@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <set>
+using namespace std;
+
+int main()
+{
+	set <string> se;
+	string s, res = "";
+	char c = ' ';
+	int i = 0;
+	
+	while (cin >> s)
+	{
+		c = ' ';
+		res = "";
+		
+		for (int j = 0; j < s.size(); j++)
+		{
+			if (s[j] >= 'a' && s[j] <= 'z' || s[j] >= 'A' && s[j] <= 'Z')
+			{
+				res += tolower(s[j]);
+			}
+			else
+			{
+				if (res != "")
+					se.insert(res);
+				res = "";
+				
+			}
+		}
+		if (res != "")
+			se.insert(res);
+	}
+	set <string>::iterator it;
+	set <string>::iterator test;
+	test = se.begin();
+	for (it = se.begin(); it != se.end(); it++)
+	{
+		
+		if (it != se.end() && *it != " ")
+			cout << *it << endl;
+		else
+			cout << *it;
+	}
+	return 0;
+}
