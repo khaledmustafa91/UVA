@@ -1,0 +1,68 @@
+#include <iostream>
+#include <stack>
+#include <queue>
+using namespace std;
+int arr[2000000];
+int main()
+{
+	ios_base::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	int y;
+	int x;
+	
+	  while(cin >> x , x)
+	  {
+		
+		int in;
+		while(cin>> in , in)
+		{
+			stack <int> st;
+			queue <int> q;
+			arr[1] = in;
+			for (int i = 2; i <= x; i++)
+			{
+				cin >> in;
+				arr[i] = in;
+			}
+			for (int i = 1; i <= x; i++)
+			{
+				q.push(i);
+			}
+			int index = 1;
+			bool b = true;
+			
+			while (index != x + 1)
+			{
+				if (!q.empty() && q.front() == arr[index])
+				{
+					q.pop();
+					index++;
+				}
+				else if (!st.empty() && st.top() == arr[index] )
+				{
+					st.pop();
+					index++;
+				}
+				else if (q.empty() && st.top() != arr[index])
+				{
+					cout << "No" << endl;
+					b = false;
+					break;
+				}
+				else
+				{
+					st.push(q.front());
+					q.pop();
+				}
+			}// while Queue
+			if (b)
+			{
+				cout << "Yes" << endl;
+			}
+		}
+		cout << endl;
+		
+	}
+	return 0;
+}
