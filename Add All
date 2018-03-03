@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main ()
+{
+
+
+    int x ;
+    cin >> x;
+    while(x != 0)
+
+    {
+         priority_queue <int, vector<int>, greater<int> > pq , res;
+        int sum = 0 ;
+        for(int i = 0 ; i < x ; i ++)
+        {
+            int y ;
+            cin >>y;
+            pq.push(y);
+        }
+        for(int i = 0 ; i < (x-1) ; i ++)
+        {
+            int a , b ;
+            a = pq.top();
+            pq.pop();
+            b= pq.top();
+            pq.pop();
+            sum = a + b;
+            pq.push(sum);
+            res.push(sum);
+        }
+        int result = 0;
+        while(!res.empty())
+        {
+            result += res.top();
+            res.pop();
+        }
+        cout<<result<<endl;
+        cin>>x;
+    }
+    return 0;
+}
