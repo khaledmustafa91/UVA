@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+int arr[100][100];
+bool check = false;
+int main ()
+{
+    int x, indexRow = 0, indexCol = 0;
+    cin>>x;
+    while(x != 0)
+    {
+        check = false;
+        for(int i = 1 ; i <= x ; i++)
+        {
+
+            for(int j = 1 ; j <= x ; j++)
+            {
+                cin>>arr[i][j];
+            }
+        }
+
+        int continues = 0;
+        int con = 0;
+        int rows = 0;
+        int colns = 0;
+        for(int i = 1 ; i <= x ; i++)
+        {
+            if(rows % 2 != 0 && continues == 0)
+            {
+                indexRow = i - 1;
+                continues++;
+            }
+            else if( rows % 2 != 0 && continues >= 1 )
+                check = true;
+            rows = 0;
+            if( colns % 2  != 0 && con == 0 )
+            {
+                indexCol = i - 1;
+                con++;
+            }
+            else if(colns % 2  != 0 && con >= 1)
+                check = true;
+            colns = 0;
+            for(int j = 1 ; j <= x ; j++)
+            {
+                rows += arr[i][j];
+                colns += arr[j][i];
+            }
+        }
+        if(check)
+            cout<<"Corrupt"<<endl;
+        else if(continues > 0)
+            cout<<"Change bit ("<<indexRow<<","<<indexCol<<")"<<endl;
+        else
+            cout<<"OK"<<endl;
+        cin>>x;
+    }
+    return 0;
+}
