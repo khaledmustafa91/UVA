@@ -1,0 +1,108 @@
+#include <bits/stdc++.h>
+using namespace std;
+int arr[100][100];
+bool check = false;
+int main ()
+{
+    string s, res ="", digits = "";
+    int x ;
+    cin>>x ;
+    while (x--)
+    {
+        res ="";
+        digits = "";
+        map <string, string> mp, mpNew;
+        cin>>s;
+        for (int j = 0; j < s.size(); j++)
+        {
+            if (s[j] >= 'a' && s[j] <= 'z' || s[j] >= 'A' && s[j] <= 'Z')
+            {
+                res += s[j];
+            }
+            else if(s[j] >= '0' && s[j] <= '9')
+            {
+                digits += s[j];
+            }
+            else
+            {
+                if(res !="" && digits != "")
+                {
+                    mp[res] = digits;
+                    res ="";
+                    digits ="";
+                }
+            }
+        }
+        res ="";
+        digits = "";
+        string NewString;
+        cin>>NewString;
+        for (int j = 0; j < NewString.size(); j++)
+        {
+            if (NewString[j] >= 'a' && NewString[j] <= 'z' || NewString[j] >= 'A' && NewString[j] <= 'Z')
+            {
+                res += NewString[j];
+            }
+            else if(NewString[j] >= '0' && NewString[j] <= '9')
+            {
+                digits += NewString[j];
+            }
+            else
+            {
+                if(res !="" && digits != "")
+                {
+                    mpNew[res] = digits;
+                    res ="";
+                    digits ="";
+                }
+            }
+        }
+        map <string, string>::const_iterator it;
+        map <string, string>::const_iterator f;
+        string searchs = "";
+        string First ="+", Second ="-", change ="*";
+        for( it = mpNew.begin() ; it != mpNew.end() ; it++)
+        {
+            searchs = it->first;
+            f = mp.find( searchs );
+            if(f == mp.end())
+            {
+                First += it->first +',';
+            }
+            else
+            {
+                if(it->second  != f-> second)
+                    change += it->first + ',';
+            }
+        }
+        for( it = mp.begin() ; it != mp.end() ; it++)
+        {
+            searchs = it->first;
+            f = mpNew.find( searchs );
+            if(f == mpNew.end())
+                Second += it->first +',';
+        }
+        First.erase(First.size()-1);
+        Second.erase(Second.size()-1);
+        if(change.size()==1)
+            change.erase(change.size()-1);
+        else
+            change.erase(change.size()-1);
+            
+        if(First != "" || Second != "" || change != "")
+        {
+            if(First != "")
+                cout<<First<<endl;
+            if(Second != "")
+                cout<<Second<<endl;
+            if(change != "")
+                cout<<change<<endl;
+        }
+        else
+        {
+            cout<<"No changes"<<endl;
+        }
+        cout<<endl;
+    }
+    return 0;
+}
