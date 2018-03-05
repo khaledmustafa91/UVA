@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main ()
+{
+    int x ;
+    cin>>x;
+    while (x--)
+    {
+        bool b = true;
+        int a, B, c ;
+        cin >> a >> B >> c;
+        for(int i = 1 ; i < 333 ; i++)
+        {
+
+            if(!b)
+                break;
+            for(int j = 1 ; j < 333 ; j++)
+            {
+                long long check = abs( c - ((i*i) + (j*j)) );
+                float f = sqrt(check); // 53 3240 9397
+                int z = f;
+                if(z == f && (i*j*z) == B && (i+j+z) == a && ((i*i) + (j*j) + (z*z)) == c )
+                {
+                    cout<< i << " "<< j <<" "<< z <<endl;
+                    b = false;
+                    break;
+                }
+                else if(z == f && (i*j*z) == B && ((-i)-(j)+z) == a && ((i*i) + (j*j) + (z*z)) == c )
+                {
+
+                    cout<< -j << " "<<  -i <<" "<< z <<endl;
+                    b = false;
+                    break;
+                }
+            }
+        }
+        if(b)
+            cout<<"No solution."<<endl;
+    }
+
+    return 0;
+}
