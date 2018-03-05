@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+using namespace std;
+int arr[100];
+int main ()
+{
+    int x ;
+    cin>>x;
+
+    while(x != 0)
+    {
+        for(int a = 0 ; a < x ; a++)
+            cin>>arr[a];
+
+        for(int i = 0 ; i < x ; i++)
+            for(int j = i+1 ; j < x ; j++)
+                for(int k = j+1 ; k < x ; k++)
+                    for(int l = k+1 ; l < x ; l++)
+                        for(int s = l+1 ; s < x ; s++)
+                            for(int d = s+1 ; d < x ; d++)
+                            if( i != j && i != k && i != l && i != s && i != d
+                               && j != k && j != l && j != s && j != d
+                               && k != l && k != s && k != d
+                               && l != s && l != d
+                               && s != d)
+                               cout<<arr[i] << " " << arr[j] << " " << arr[k] << " " << arr[l] <<" "<< arr[s] << " " <<arr[d]<<endl;
+
+       cin>>x;
+       if(x != 0)
+         cout<<endl;
+    }
+    return 0;
+}
