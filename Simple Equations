@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+int arr[100];
 int main ()
 {
     int x ;
@@ -19,13 +20,13 @@ int main ()
                 long long check = abs( c - ((i*i) + (j*j)) );
                 float f = sqrt(check); // 53 3240 9397
                 int z = f;
-                if(z == f && (i*j*z) == B && (i+j+z) == a && ((i*i) + (j*j) + (z*z)) == c )
+                if(z == f && (i*j*z) == B && (i+j+z) == a && ((i*i) + (j*j) + (z*z)) == c && i != j && i != z && j != z )
                 {
                     cout<< i << " "<< j <<" "<< z <<endl;
                     b = false;
                     break;
                 }
-                else if(z == f && (i*j*z) == B && ((-i)-(j)+z) == a && ((i*i) + (j*j) + (z*z)) == c )
+                else if(z == f && (i*j*z) == B && ((-i)-(j)+z) == a && ((i*i) + (j*j) + (z*z)) == c && i != j && i != z && j != z )
                 {
 
                     cout<< -j << " "<<  -i <<" "<< z <<endl;
