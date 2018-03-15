@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <set>
+using namespace std;
+
+int Gate[100];
+int Cost[100];
+vector <int> v , v1;
+set <int> se;
+int main()
+{
+	int n;
+	cin >> n;
+	for (int i = 0; i < n; i++)
+		cin >> Gate[i] >> Cost[i];
+	int m , s = 0;
+	bool b = false;
+	cin >> m;
+	for (int i = 0; i < m; i++)
+	{
+		int V, T, mn = 100000000;
+		cin >> V >> T;
+		for (int msk = 0; msk < (1 << n); msk++)
+		{
+
+			int sum = 0, rem = 0;
+			for (int k = 0; k < n; k++)
+			{
+				if (msk & (1 << k))
+				{
+					sum += Gate[k] * T;
+					rem += Cost[k];
+				}
+			}
+			if (sum >= V)
+			{
+				if (rem > 0)
+					mn = min(mn, rem);
+			}		
+		}
+		if(mn != 100000000 )
+			cout << "Case "<< i+1 <<": "<< mn << endl;
+		else
+			cout << "Case " << i+1 << ": " << "IMPOSSIBLE" << endl;
+	}
+	return 0;
+}
