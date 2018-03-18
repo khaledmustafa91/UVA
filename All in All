@@ -1,0 +1,35 @@
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
+#include <set>
+using namespace std;
+
+int main()
+{
+	string s, s1;
+	
+	
+	while (cin >> s >> s1)
+	{
+		int index = 0;
+		bool b = true;
+		string res = "";
+		for (int j = 0; j < s1.size(); j++)
+		{
+			if (s[index] == s1[j])
+			{
+				res += s1[j];
+				index++;
+			}
+			
+		}
+		if (res == s)
+			cout << "Yes" << endl;
+		else
+			cout << "No" << endl;
+		res = "";
+	}
+	return 0;
+}
+
