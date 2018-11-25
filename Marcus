@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+int n, m;
+int dx[] = { -1 , 0 , 0 };
+int dy[] = { 0 , 1 , -1 };
+string result[] = { "forth" , "right" , "left" };
+vector <string> v;
+string name = "IEHOVA#";
+char arr[10][10];
+bool ongrid(int i, int j) { return (i < n && i >= 0 && j < m && j >= 0); }
+void dfs(int i, int j, int index)
+{
+	if (index > name.size()) return;
+
+	for (int k = 0; k < 3; k++)
+	{
+		int tox = i + dx[k];
+		int toy = j + dy[k];
+		if (ongrid(tox, toy) && arr[tox][toy] == name[index])
+		{
+			v.push_back(result[k]);
+			dfs(tox, toy , index+1);
+		}
+	}
+}
+
+int main()
+{
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		cin >> n >> m;
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)
+				cin >> arr[i][j];
+		v.clear();
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)
+				if (arr[i][j] == '@')
+					dfs(i, j, 0);
+		for (int i = 0; i < v.size(); i++)
+		{
+			cout << v[i];
+			if (i < v.size() - 1)
+				cout << " ";
+		}
+		cout << endl;
+	}
+	return 0;
+}
